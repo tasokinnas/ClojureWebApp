@@ -1,0 +1,14 @@
+/clojure-web-project/target
+/clojure-web-project/lib
+/clojure-web-project/classes
+/clojure-web-project/checkouts
+/clojure-web-project/pom.xml
+/clojure-web-project/*.jar
+/clojure-web-project/*.class
+/clojure-web-project/.lein-*
+/clojure-web-project/profiles.clj
+/clojure-web-project/.env
+/clojure-web-project/.nrepl-port
+/clojure-web-project/log
+/clojure-web-project/resources/data
+/clojure-web-project/.idea
