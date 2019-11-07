@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <h1>Business Intelligence Website</h1>
+    </div>
+    <p class="lead">Paired with visualization, data can tell us all sorts of amazing stories. Don't take our word for it
+        though! <a href="https://www.reddit.com/r/dataisbeautiful/" target="_blank">See for yourself!</a></p>
+    <p>This project uses Clojure to create a web-based application that can be treated like an interactive document for a given data set.  Clojure has established a notable reputation among the data science community.  The functional capabilities of Clojure are ideal for pulling in large amounts of data, while the Java libraries can help provide resources to be used for data manipulation and web development. Data can be easily returned to the user with interpretable results in the form of data visualizations.</p>
+    <p>This site can support several different types of data inputs.  The user can choose a CSV from the project’s repository, upload a CSV locally, or choose a dataset from the Incanter library.  The application has the ability to parse CSV files of any number of row or column lengths, but the CSV file must include headers.  </p>
+
+</div><!-- End Container -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <!--
+            <form action="{{servlet-context}}/upload" method="POST">
+                {% csrf-field %}
+                <div class="form-group">
+                    <label for="fuploadf">File input</label>
+                    <input type="file" class="form-control-file" id="fuploadf" name="fuploadf" aria-describedby="fileHelpp">
+                    <small id="fileHelpp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+                </div>
+                <input class="btn" type="submit" value="upload!"/>
+                <br><br>
+            </form>
+            -->
+            <form action="{{servlet-context}}/select-data" method="POST">
+                {% csrf-field %}
+                <div class="form-group">
+                    <label for="graph">Select Data Source</label>
+                    <select class="form-control" id="graph" name="graph"
+                            onchange="upload(this); local(this); incanter(this);">
+                        <option value="">---- Select Source ----</option>
+                        <option value="upload" disabled>Upload CSV (NOT IMPLEMENTED)</option>
+                        <option value="local" >Local CSV</option>
+                        <option value="incanter">Incanter Dataset</option>
+                    </select>
+                    <br>
+                    <div id="ifupload" style="display: none;">
+                        <label for="uploadf">File input</label>
+                        <input type="file" class="form-control-file" id="uploadf" name="uploadf" aria-describedby="fileHelp">
+                        <small id="fileHelp" class="form-text text-muted">Choose a CSV data file.</small>
+                    </div>
+                    <div id="iflocal" style="display: none;">
+                        <label for="localf">Select Dataset</label>
+                        <select class="form-control" id="localf" name="localf">
+                            <option value="file-none">---- Select Value ----</option>
+                            {% for file in files %}
+                            <option value="{{file}}">{{file}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div id="ifincanter" style="display: none;">
+                        <label for="id">Select Dataset</label>
+                        <select class="form-control" id="id" name="id">
+                            <option value="incanter-none">---- Select Value ----</option>
+                            <option value="iris">iris</option>
+                            <option value="cars">cars</option>
+                            <option value="survey">survey</option>
+                            <option value="arrests">arrests</option>
+                            <option value="flow">flow</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <input class="btn" type="submit" value="output!"/>
+            </form>
+            <script>
+                function upload(that) {
+                    if (that.value == "upload") {
+                        document.getElementById("ifupload").style.display = "block";
+                        document.getElementById("iflocal").style.display = "none";
+                        document.getElementById("ifincanter").style.display = "none";
+                    }
+                }
+                function local(that) {
+                    if (that.value == "local") {
+                        document.getElementById("ifupload").style.display = "none";
+                        document.getElementById("iflocal").style.display = "block";
+                        document.getElementById("ifincanter").style.display = "none";
+                    }
+                }
+                function incanter(that) {
+                    if (that.value == "incanter") {
+                        document.getElementById("ifupload").style.display = "none";
+                        document.getElementById("iflocal").style.display = "none";
+                        document.getElementById("ifincanter").style.display = "block";
+                    }
+                }
+            </script>
+        </div>
+    </div>
+</div><!-- End Container -->
+{% endblock %}

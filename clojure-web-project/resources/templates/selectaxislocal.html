@@ -1,0 +1,25 @@
+<div class="container"><div class="page-header"><div class="form-group"><form action="/csvgraph" method="POST">{% csrf-field %}<div class="form-group"><label for="graph">Select Graph Type</label><select class="form-control" id="graph" name="graph" onchange="scattercheck(this); barcheck(this); histogramcheck(this);"><option>---- Select Type ----</option><option value="histogram">histogram</option><option value="scatter">scatter plot</option><option value="bar">bar chart</option><option value="line">line chart</option><option value="box">box chart</option></select><br /><div id="ifScatter" style="display: none;"><label for="groupby">Select Group by Option </label><select class="form-control" id="groupby" name="groupby"><option value="nogroups">---- Select Value ----</option><option value=":Year">Year</option><option value=":Leading Cause">Leading Cause</option><option value=":Sex">Sex</option><option value=":Race Ethnicity">Race Ethnicity</option><option value=":Deaths">Deaths</option><option value=":Death Rate">Death Rate</option><option value=":Age Adjusted Death Rate">Age Adjusted Death Rate</option></select></div><br /><div id="ifX" style="display: none;"><label for="idx">Select X-Axis</label><select class="form-control" id="idx" name="idx"><option>---- Select Value ----</option><option value=":Year">Year</option><option value=":Leading Cause">Leading Cause</option><option value=":Sex">Sex</option><option value=":Race Ethnicity">Race Ethnicity</option><option value=":Deaths">Deaths</option><option value=":Death Rate">Death Rate</option><option value=":Age Adjusted Death Rate">Age Adjusted Death Rate</option></select></div><div id="ifY" style="display: none;"><label for="idy">Select Y-Axis</label><select class="form-control" id="idy" name="idy"><option>---- Select Value ----</option><option value=":Year">Year</option><option value=":Leading Cause">Leading Cause</option><option value=":Sex">Sex</option><option value=":Race Ethnicity">Race Ethnicity</option><option value=":Deaths">Deaths</option><option value=":Death Rate">Death Rate</option><option value=":Age Adjusted Death Rate">Age Adjusted Death Rate</option></select></div><input id="filename" name="filename" type="hidden" value="resources\data\New_York_City_Leading_Causes_of_Death.csv" /><br /><br /><input type="submit" /></div></form><script>function scattercheck(that) {
+                                         if (that.value == "scatter" || that.value == "line") {
+                                            document.getElementById("ifX").style.display = "block";
+                                            document.getElementById("ifY").style.display = "block";
+                                            document.getElementById("ifScatter").style.display = "block";
+
+                                        }
+                                    }
+</script><script>function barcheck(that) {
+                                         if (that.value == "bar"  || that.value == "line") {
+                                            document.getElementById("ifX").style.display = "block";
+                                            document.getElementById("ifY").style.display = "block";
+                                            document.getElementById("ifScatter").style.display = "none";
+
+                                        }
+                                    }
+</script><script>function histogramcheck(that) {
+                                         if (that.value == "histogram" || that.value == "box") {
+                                            document.getElementById("ifX").style.display = "block";
+                                            document.getElementById("ifY").style.display = "none";
+                                            document.getElementById("ifScatter").style.display = "none";
+
+                                        }
+                                    }
+</script></div><h1>Data Output for resources\data\New_York_City_Leading_Causes_of_Death.csv</h1></div></div>
